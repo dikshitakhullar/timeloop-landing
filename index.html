@@ -1277,19 +1277,19 @@
                 <!-- Dynamic watch image grid -->
                 <div class="watch-grid">
                     <div class="watch-card">
-                        <img src="https://via.placeholder.com/200x150/f3f4f6/532a2e?text=Timex" alt="Timex Watch" />
+                        <img src="./images/timex-black.jpg" alt="Timex Watch" />
                         <div class="watch-label">Business Dinner</div>
                     </div>
                     <div class="watch-card">
-                        <img src="https://via.placeholder.com/200x150/f3f4f6/532a2e?text=Titan" alt="Titan Watch" />
+                        <img src="./images/titan.jpg" alt="Titan Watch" />
                         <div class="watch-label">Weekend Casual</div>
                     </div>
                     <div class="watch-card">
-                        <img src="https://via.placeholder.com/200x150/f3f4f6/532a2e?text=Casio" alt="Casio Watch" />
+                        <img src="./images/casio.jpg" alt="Casio Watch" />
                         <div class="watch-label">Adventure Ready</div>
                     </div>
                     <div class="watch-card">
-                        <img src="https://via.placeholder.com/200x150/f3f4f6/532a2e?text=Armani" alt="Armani Exchange Watch" />
+                        <img src="./images/armani_exchange.jpg" alt="Armani Exchange Watch" />
                         <div class="watch-label">Evening Events</div>
                     </div>
                 </div>
@@ -1332,16 +1332,16 @@
                         <p>Browse our collection of premium timepieces from top brands. We'll deliver them to your doorstep in pristine condition within 2-3 business days.</p>
                         <div class="brand-grid">
                             <div class="brand-card">
-                                <img src="https://via.placeholder.com/80x40/f2ece7/532a2e?text=Seiko" alt="Seiko" />
+                                <img src="./images/seiko_logo.png" alt="Seiko" />
                             </div>
                             <div class="brand-card">
-                                <img src="https://via.placeholder.com/80x40/f2ece7/532a2e?text=Timex" alt="Timex" />
+                                <img src="./images/timex_logo.png" alt="Timex" />
                             </div>
                             <div class="brand-card">
-                                <img src="https://via.placeholder.com/80x40/f2ece7/532a2e?text=Casio" alt="Casio" />
+                                <img src="./images/casio_logo.png" alt="Casio" />
                             </div>
                             <div class="brand-card">
-                                <img src="https://via.placeholder.com/80x40/f2ece7/532a2e?text=Fossil" alt="Fossil" />
+                                <img src="./images/fossil_logo.png" alt="Fossil" />
                             </div>
                         </div>
                     </div>
@@ -1608,7 +1608,7 @@
                 <p>Join India's first premium watch subscription service. Be among the first 500 early members to unlock exclusive benefits.</p>
                 
                 <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
-                <form class="waitlist-form" action="https://formspree.io/f/xgvyjknj" method="POST" id="waitlistForm">
+                <form class="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="waitlistForm">
                     <div class="form-group">
                         <input 
                             type="email" 
@@ -1639,54 +1639,54 @@
     </footer>
 
     <script>
-        // Watch data
+        // Watch data - Replace with your actual image paths
         const watches = [
             {
                 id: 1,
                 name: "Seiko Sport Chronograph",
-                image: "https://via.placeholder.com/300x240/f9fafb/532a2e?text=Seiko+Sport",
+                image: "./images/seiko.png", // Replace with your actual image path
                 model: "SSB429P1",
                 tier: "Premium"
             },
             {
                 id: 2,
                 name: "Timex Expedition",
-                image: "https://via.placeholder.com/300x240/f9fafb/132d48?text=Timex+Expedition",
+                image: "./images/timex.jpg", // Replace with your actual image path
                 model: "Tw2V00600X6",
                 tier: "Standard"
             },
             {
                 id: 3,
                 name: "Invicta Pro Diver",
-                image: "https://via.placeholder.com/300x240/f9fafb/132d48?text=Invicta+Pro",
+                image: "./images/invicta.jpg", // Replace with your actual image path
                 model: "8926OB",
                 tier: "Standard"
             },
             {
                 id: 4,
                 name: "Casio G-Shock",
-                image: "https://via.placeholder.com/300x240/f9fafb/132d48?text=Casio+G-Shock",
+                image: "./images/casio.jpg", // Replace with your actual image path
                 model: "GBM-2100-1A",
                 tier: "Standard"
             },
             {
                 id: 5,
                 name: "Armani Exchange Hampton",
-                image: "https://via.placeholder.com/300x240/f9fafb/532a2e?text=Armani+Exchange",
+                image: "./images/armani_exchange.jpg", // Replace with your actual image path
                 model: "AX2440",
                 tier: "Premium"
             },
             {
                 id: 6,
                 name: "Titan Maritime",
-                image: "https://via.placeholder.com/300x240/f9fafb/532a2e?text=Titan+Maritime",
+                image: "./images/titan.jpg", // Replace with your actual image path
                 model: "NM1830KL02",
                 tier: "Premium"
             },
             {
                 id: 7,
                 name: "Timex Marlin",
-                image: "https://via.placeholder.com/300x240/f9fafb/532a2e?text=Timex+Marlin",
+                image: "./images/timex-black.jpg", // Replace with your actual image path
                 model: "TW2V44600U9",
                 tier: "Premium"
             }
@@ -1732,6 +1732,9 @@
             const submitBtn = document.getElementById('submitBtn');
             const submitText = document.getElementById('submitText');
             const successMessage = document.getElementById('successMessage');
+            
+            // For demo purposes - remove this for production
+            e.preventDefault();
             
             // Show loading state
             submitBtn.classList.add('loading');
