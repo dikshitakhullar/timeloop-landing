@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TimeLoop - Premium Watch Subscription</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Palantino:wght@400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-orange: #EE6C4D;
+            --primary-navy: #132D48;
+            --cream: #ECF0F1;
+            --secondary-brown: #8B5A3C;
+            --white: #FFFFFF;
+            --text-dark: #2C3E50;
+            --text-muted: #7F8C8D;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,15 +25,46 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-dark);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            color: var(--primary-navy);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
+        }
+
+        /* GRADIENT DASH SEPARATOR */
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-navy), var(--secondary-brown));
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(238, 108, 77, 0.3);
+        }
+
+        /* Required parent styles */
+        .section-title h2 {
+            position: relative; /* Required for ::after positioning */
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            margin-top: 0.5rem; /* Extra space to accommodate the separator */
         }
 
         /* Header */
@@ -31,127 +75,166 @@
             right: 0;
             z-index: 50;
             backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.8);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(238, 108, 77, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 1rem;
+            padding: 1rem;
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: bold;
-            font-family: serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            font-family: 'Palantino', serif;
             letter-spacing: -0.025em;
-            color: #532a2e;
+            color: var(--primary-navy);
         }
 
         .cta-btn {
-            background: #532a2e;
+            background: linear-gradient(135deg, var(--primary-orange), #FF7F66);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 9999px;
-            font-weight: 500;
-            font-size: 0.875rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(238, 108, 77, 0.3);
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
         }
 
         .cta-btn:hover {
-            box-shadow: 0 4px 12px rgba(83, 42, 46, 0.3);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(238, 108, 77, 0.4);
         }
 
         @media (min-width: 640px) {
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             .cta-btn {
-                padding: 0.5rem 2rem;
+                padding: 0.8rem 2rem;
                 font-size: 1rem;
             }
         }
 
         /* Hero Section */
         .hero {
-            padding-top: 6rem;
-            padding-bottom: 3rem;
-            background-color: #f2ece7;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, var(--cream) 0%, #F8F9FA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23EE6C4D" fill-opacity="0.03"><circle cx="30" cy="30" r="1"/></g></svg>');
+            pointer-events: none;
         }
 
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
         }
 
         @media (min-width: 768px) {
             .hero-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 4rem;
+                gap: 5rem;
             }
         }
 
         .hero-content {
             max-width: 36rem;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 1.875rem;
-            font-family: serif;
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: #132d48;
+            font-size: 2.5rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--primary-navy);
         }
 
         .hero h1 .bold {
-            font-weight: 600;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         @media (min-width: 640px) {
             .hero h1 {
-                font-size: 2.25rem;
-                margin-bottom: 1.5rem;
+                font-size: 3rem;
+                margin-bottom: 2rem;
             }
         }
 
         @media (min-width: 768px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
         }
 
         @media (min-width: 1024px) {
             .hero h1 {
-                font-size: 3.75rem;
+                font-size: 4rem;
             }
         }
 
         .hero p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: #132d48;
-            opacity: 0.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            line-height: 1.7;
         }
 
         @media (min-width: 640px) {
             .hero p {
-                font-size: 1.125rem;
+                font-size: 1.2rem;
             }
         }
 
         @media (min-width: 768px) {
             .hero p {
-                font-size: 1.25rem;
+                font-size: 1.3rem;
             }
         }
 
@@ -159,7 +242,7 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            max-width: 20rem;
+            max-width: 24rem;
         }
 
         @media (min-width: 640px) {
@@ -170,60 +253,107 @@
         }
 
         .btn-primary {
-            background: #132d48;
+            background: linear-gradient(135deg, var(--primary-orange), #FF7F66);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 9999px;
-            font-weight: 500;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(238, 108, 77, 0.3);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(238, 108, 77, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(238, 108, 77, 0.5);
+            }
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
         .btn-primary:hover {
-            box-shadow: 0 4px 12px rgba(19, 45, 72, 0.3);
-            transform: translateY(-1px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(238, 108, 77, 0.4);
         }
 
         @media (min-width: 640px) {
             .btn-primary {
-                padding: 1rem 2.5rem;
+                padding: 1.2rem 2.5rem;
             }
         }
 
         .btn-secondary {
-            border: 1px solid #132d48;
-            color: #132d48;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 500;
+            border: 2px solid var(--primary-navy);
+            color: var(--primary-navy);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-block;
             background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--primary-navy);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            width: 100%;
         }
 
         .btn-secondary:hover {
-            background: #132d48;
             color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(19, 45, 72, 0.3);
         }
 
         @media (min-width: 640px) {
             .btn-secondary {
-                padding: 1rem 2.5rem;
+                padding: 1.2rem 2.5rem;
             }
         }
 
-        /* Watch Grid */
+        /* Watch Grid with Floating Animation */
         .watch-grid {
             display: none;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
             position: relative;
         }
 
@@ -235,96 +365,102 @@
 
         .watch-card {
             background: white;
-            padding: 1rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .watch-card:nth-child(1) {
-            transform: rotate(-6deg);
+        .watch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(238, 108, 77, 0.1), transparent);
+            transition: left 0.6s;
         }
 
-        .watch-card:nth-child(2) {
-            transform: translateY(3rem) rotate(3deg);
-        }
-
-        .watch-card:nth-child(3) {
-            transform: translateY(-1.5rem) rotate(-3deg);
-        }
-
-        .watch-card:nth-child(4) {
-            transform: translateY(1.5rem) rotate(6deg);
+        .watch-card:hover::before {
+            left: 100%;
         }
 
         .watch-card:hover {
-            transform: translateY(-0.5rem) rotate(0deg);
+            transform: translateY(-10px) rotate(0deg) !important;
+            box-shadow: 0 20px 40px rgba(238, 108, 77, 0.2);
+            border: 2px solid var(--primary-orange);
         }
 
         .watch-card img {
             width: 100%;
             height: auto;
-            border-radius: 0.5rem;
+            border-radius: 12px;
         }
 
         .watch-label {
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             text-align: center;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #532a2e;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-orange);
         }
 
-        /* How It Works Section */
+        /* Section Styles */
         .how-it-works {
-            padding: 3rem 0;
+            padding: 5rem 0;
             background: white;
+            position: relative;
         }
 
         @media (min-width: 640px) {
             .how-it-works {
-                padding: 5rem 0;
+                padding: 7rem 0;
             }
         }
 
         .section-title {
             text-align: center;
             max-width: 48rem;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 3rem;
         }
 
         @media (min-width: 640px) {
             .section-title {
-                margin-bottom: 4rem;
+                margin-bottom: 5rem;
             }
         }
 
         .section-title h2 {
-            font-size: 1.5rem;
-            font-family: serif;
-            font-weight: bold;
-            margin-bottom: 0.75rem;
-            color: #532a2e;
+            font-size: 2rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
         }
 
         @media (min-width: 640px) {
             .section-title h2 {
-                font-size: 1.875rem;
-                margin-bottom: 1rem;
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
             }
         }
 
         @media (min-width: 768px) {
             .section-title h2 {
-                font-size: 2.25rem;
+                font-size: 3rem;
             }
         }
 
         .section-title p {
-            color: #132d48;
-            opacity: 0.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 400;
         }
 
+        /* Steps */
         .steps-container {
             max-width: 64rem;
             margin: 0 auto;
@@ -337,8 +473,9 @@
             left: 21px;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: #ebdfd5;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-orange), var(--primary-navy));
+            border-radius: 2px;
         }
 
         @media (min-width: 768px) {
@@ -350,20 +487,14 @@
         .step {
             display: flex;
             flex-direction: column;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             position: relative;
         }
 
         @media (min-width: 768px) {
             .step {
                 flex-direction: row;
-                margin-bottom: 3rem;
-            }
-        }
-
-        @media (min-width: 640px) {
-            .step {
-                margin-bottom: 3rem;
+                margin-bottom: 4rem;
             }
         }
 
@@ -380,129 +511,124 @@
         }
 
         .step-dot {
-            width: 12px;
-            height: 12px;
-            background: #132d48;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
             border-radius: 50%;
             position: absolute;
-            left: 0;
-            top: 1.5rem;
+            left: -2px;
+            top: 2rem;
+            box-shadow: 0 0 0 4px white, 0 0 0 8px var(--primary-orange);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                box-shadow: 0 0 0 4px white, 0 0 0 8px rgba(238, 108, 77, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 4px white, 0 0 0 12px rgba(238, 108, 77, 0.1);
+            }
         }
 
         .step-content {
             background: white;
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             flex: 1;
-            border-top: 4px solid #532a2e;
-        }
-
-        @media (min-width: 640px) {
-            .step-content {
-                padding: 2rem;
-            }
+            border-top: 4px solid var(--primary-orange);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .step h3 {
-            font-size: 1.125rem;
-            font-family: serif;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #532a2e;
+            font-size: 1.4rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
         }
 
         @media (min-width: 640px) {
             .step h3 {
-                font-size: 1.25rem;
-                margin-bottom: 0.75rem;
+                font-size: 1.6rem;
+                margin-bottom: 1.2rem;
             }
         }
 
         .step p {
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-            color: #132d48;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
         @media (min-width: 640px) {
             .step p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
         }
 
         .step-tip {
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            background: #f2ece7;
-        }
-
-        @media (min-width: 640px) {
-            .step-tip {
-                padding: 1rem;
-            }
+            padding: 1.2rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--cream), #F0F4F7);
+            border-left: 4px solid var(--primary-orange);
         }
 
         .step-tip p {
-            font-size: 0.75rem;
-            color: #532a2e;
+            font-size: 0.9rem;
+            color: var(--primary-navy);
             margin: 0;
+            font-weight: 500;
         }
 
         @media (min-width: 640px) {
             .step-tip p {
-                font-size: 0.875rem;
+                font-size: 1rem;
             }
         }
 
+        /* Brand Grid */
         .brand-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .brand-grid {
-                gap: 0.75rem;
-                margin-top: 1.5rem;
-            }
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .brand-card {
-            background: #f2ece7;
-            border-radius: 0.5rem;
-            padding: 0.25rem;
+            background: white;
+            border-radius: 12px;
+            padding: 0.8rem;
             text-align: center;
             transition: all 0.3s ease;
-        }
-
-        @media (min-width: 640px) {
-            .brand-card {
-                padding: 0.5rem;
-            }
+            border: 2px solid var(--cream);
         }
 
         .brand-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(238, 108, 77, 0.15);
+            border-color: var(--primary-orange);
         }
 
         .brand-card img {
             width: 100%;
             height: auto;
-            border-radius: 0.25rem;
+            border-radius: 8px;
         }
 
-        /* Product Showcase Section */
+        /* Product Showcase */
         .product-showcase {
-            padding: 3rem 0;
-            background: #f2ece7;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--cream) 0%, #F8F9FA 100%);
         }
 
         @media (min-width: 640px) {
             .product-showcase {
-                padding: 5rem 0;
+                padding: 7rem 0;
             }
         }
 
@@ -516,7 +642,7 @@
 
         .watches-grid {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             scroll-snap-type: x mandatory;
         }
 
@@ -526,112 +652,112 @@
             }
         }
 
-        .watch-showcase-card {
-            min-width: 260px;
-            scroll-snap-align: center;
-            position: relative;
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+       .watches-grid {
+            display: flex;
+            gap: 1.5rem;
+            scroll-snap-type: x mandatory;
         }
 
-        @media (min-width: 640px) {
-            .watch-showcase-card {
-                min-width: 280px;
-            }
-        }
+      @media (min-width: 640px) {
+          .watches-grid {
+              gap: 2rem;
+          }
+      }
 
-        @media (min-width: 768px) {
-            .watch-showcase-card {
-                min-width: 320px;
-            }
-        }
+      .watch-showcase-card {
+          min-width: 260px;
+          scroll-snap-align: center;
+          position: relative;
+          background: white;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+          transition: all 0.4s ease;
+          border: 2px solid transparent;
+      }
 
-        .watch-showcase-card:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
+      @media (min-width: 640px) {
+          .watch-showcase-card {
+              min-width: 280px;
+          }
+      }
 
-        .watch-image-container {
-            position: relative;
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-        }
+      @media (min-width: 768px) {
+          .watch-showcase-card {
+              min-width: 300px;
+          }
+      }
 
-        .watch-image {
-            width: 100%;
-            height: 13rem;
-            object-fit: contain;
-            padding: 1rem;
-        }
+      .watch-showcase-card:hover {
+          box-shadow: 0 20px 50px rgba(238, 108, 77, 0.2);
+          transform: translateY(-10px);
+          border-color: var(--primary-orange);
+      }
 
-        @media (min-width: 640px) {
-            .watch-image {
-                height: 16rem;
-                padding: 2rem;
-            }
-        }
+      .watch-image-container {
+          position: relative;
+          background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      }
 
-        @media (min-width: 768px) {
-            .watch-image {
-                height: 20rem;
-            }
-        }
+      .watch-image {
+          width: 100%;
+          height: 200px;
+          object-fit: contain;
+          padding: 1.5rem;
+      }
 
-        .tier-badge {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: white;
-        }
+      @media (min-width: 640px) {
+          .watch-image {
+              height: 220px;
+              padding: 1.5rem;
+          }
+      }
+
+      @media (min-width: 768px) {
+          .watch-image {
+              height: 240px;
+          }
+      }
+
+      .tier-badge {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          padding: 0.4rem 0.8rem;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: white;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+      }
 
         .tier-premium {
-            background: #532a2e;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
         }
 
         .tier-standard {
-            background: #132d48;
+            background: linear-gradient(135deg, var(--primary-navy), #1E3A5F);
         }
 
         .watch-info {
-            padding: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .watch-info {
-                padding: 1.5rem;
-            }
+            padding: 1.2rem;
         }
 
         .watch-name {
-            font-size: 1.125rem;
-            font-family: serif;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: #532a2e;
-        }
-
-        @media (min-width: 640px) {
-            .watch-name {
-                font-size: 1.25rem;
-            }
+            font-size: 1.1rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--primary-navy);
+            line-height: 1.3;
         }
 
         .watch-model {
-            font-size: 0.75rem;
-            margin-bottom: 0.75rem;
-            color: #132d48;
-            opacity: 0.7;
-        }
-
-        @media (min-width: 640px) {
-            .watch-model {
-                font-size: 0.875rem;
-            }
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         .watch-pricing {
@@ -641,29 +767,259 @@
         }
 
         .retail-price {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 9999px;
-            background: #f2ece7;
-            color: #532a2e;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--cream), #F0F4F7);
+            color: var(--primary-navy);
+            font-weight: 600;
         }
 
         .timeloop-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #132d48;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-orange);
         }
 
-        .collection-note {
+        /* FAQ Section with Interactive Dropdowns */
+        .faq {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        @media (min-width: 640px) {
+            .faq {
+                padding: 7rem 0;
+            }
+        }
+
+        .faq-container {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            border-top: 2px solid var(--cream);
+        }
+
+        .faq-item {
+            border-bottom: 2px solid var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            padding: 1.5rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-orange);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--primary-orange);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .faq-question {
+                font-size: 1.2rem;
+            }
+            .faq-answer {
+                font-size: 1rem;
+            }
+        }
+
+        /* Waitlist Section */
+        .waitlist {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1E3A5F 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waitlist::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23EE6C4D" fill-opacity="0.1"><circle cx="30" cy="30" r="1"/></g></svg>');
+            pointer-events: none;
+        }
+
+        @media (min-width: 640px) {
+            .waitlist {
+                padding: 7rem 0;
+            }
+        }
+
+        .waitlist-container {
+            max-width: 32rem;
+            margin: 0 auto;
             text-align: center;
-            margin-top: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .collection-note p {
-            font-size: 0.875rem;
-            font-style: italic;
-            margin-bottom: 1rem;
-            color: #132d48;
+        .waitlist h2 {
+            font-size: 2rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        @media (min-width: 640px) {
+            .waitlist h2 {
+                font-size: 2.8rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .waitlist h2 {
+                font-size: 3.2rem;
+            }
+        }
+
+        .waitlist p {
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        @media (min-width: 640px) {
+            .waitlist p {
+                font-size: 1.1rem;
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .waitlist p {
+                font-size: 1.2rem;
+            }
+        }
+
+        .waitlist-form {
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .form-group {
+                flex-direction: row;
+            }
+        }
+
+        .waitlist-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+            min-width: 0;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .waitlist-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .waitlist-input:focus {
+            border-color: var(--primary-orange);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(238, 108, 77, 0.3);
+        }
+
+        .waitlist-submit {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary-orange), #FF7F66);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(238, 108, 77, 0.4);
+        }
+
+        .waitlist-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .waitlist-submit:hover::before {
+            left: 100%;
+        }
+
+        .waitlist-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(238, 108, 77, 0.5);
+        }
+
+        .success-message {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            display: none;
+            padding: 1rem;
+            background: rgba(46, 204, 113, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
         }
 
         /* Pricing Section */
@@ -674,15 +1030,15 @@
 
         @media (min-width: 640px) {
             .pricing {
-                padding: 6rem 0;
+                padding: 5rem 0;
             }
         }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-            max-width: 64rem;
+            gap: 2rem;
+            max-width: 56rem;
             margin: 0 auto;
         }
 
@@ -695,251 +1051,206 @@
 
         .pricing-card {
             background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border: 1px solid #f3f4f6;
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 2px solid var(--cream);
+            transition: all 0.3s ease;
+            position: relative;
+            height: fit-content;
         }
+    
 
-        @media (min-width: 640px) {
-            .pricing-card {
-                padding: 2rem;
-            }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(238, 108, 77, 0.15);
+            border-color: var(--primary-orange);
         }
 
         .pricing-card.featured {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: 2px solid #532a2e;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Back to original shadow */
+            border: 2px solid var(--primary-orange); /* Using orange instead of the old color */
             position: relative;
+            /* Remove the transform: scale() to match original */
         }
 
-        .best-value-badge {
-            position: absolute;
-            top: -1rem;
-            right: 1rem;
-            background: #532a2e;
-            color: white;
-            padding: 0.25rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        .pricing-card.featured:hover {
+            transform: translateY(-5px);
+            z-index: 1
         }
+
+
+        .best-value-badge {
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
         .plan-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            gap: 1rem;
         }
 
-        @media (min-width: 640px) {
-            .plan-header {
-                margin-bottom: 1rem;
-            }
+        .plan-info {
+            flex: 1;
         }
 
         .plan-name {
-            font-size: 1.125rem;
-            font-family: serif;
-            font-weight: 600;
-            color: #532a2e;
-        }
-
-        @media (min-width: 640px) {
-            .plan-name {
-                font-size: 1.25rem;
-            }
+            font-size: 1.3rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            color: var(--primary-navy);
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
         }
 
         .plan-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            background: #f2ece7;
-            color: #532a2e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--cream), #F0F4F7);
+            color: var(--primary-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
         }
+
+        .plan-badge.popular {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
+            color: white;
+          }
+
 
         .price-display {
-            margin-bottom: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .price-display {
-                margin-bottom: 1.5rem;
-            }
+            text-align: right;
+            flex-shrink: 0;
         }
 
         .price {
-            font-size: 1.875rem;
-            font-family: serif;
-            font-weight: bold;
-            color: #132d48;
-        }
-
-        @media (min-width: 640px) {
-            .price {
-                font-size: 2.25rem;
-            }
+            font-size: 2.2rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            color: var(--primary-navy);
+            line-height: 1;
         }
 
         .price-period {
-            font-size: 1rem;
-            margin-left: 0.25rem;
-            color: #132d48;
-        }
-
-        @media (min-width: 640px) {
-            .price-period {
-                font-size: 1.125rem;
-                margin-left: 0.5rem;
-            }
+            font-size: 0.9rem;
+            margin-left: 0.2rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         .price-subtitle {
-            font-size: 0.75rem;
-            margin-bottom: 1rem;
-            color: #132d48;
-            opacity: 0.8;
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        @media (min-width: 640px) {
-            .price-subtitle {
-                font-size: 0.875rem;
-                margin-bottom: 1.5rem;
-            }
-        }
+  .features-compact {
+      margin-bottom: 1.2rem;
+  }
 
-        .features-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
 
-        @media (min-width: 640px) {
-            .features-list {
-                margin-bottom: 2rem;
-            }
-        }
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
 
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
+.feature-row.highlight {
+    color: var(--primary-orange);
+}
 
-        @media (min-width: 640px) {
-            .feature-item {
-                gap: 0.75rem;
-                margin-bottom: 1rem;
-            }
-        }
+.check-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    color: var(--primary-orange);
+}
 
-        .check-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-            margin-top: 0.125rem;
-            flex-shrink: 0;
-            color: #532a2e;
-        }
 
-        .feature-text {
-            font-size: 0.875rem;
-            color: #132d48;
-        }
 
-        @media (min-width: 640px) {
-            .feature-text {
-                font-size: 1rem;
-            }
-        }
-
-        .feature-highlight {
-            font-weight: 500;
-            color: #532a2e;
-        }
-
-        .feature-subtitle {
-            font-size: 0.75rem;
-            margin-top: 0.125rem;
-            color: #532a2e;
-            opacity: 0.8;
-        }
-
-        .value-comparison {
-            padding-top: 1rem;
-            border-top: 1px solid #f2ece7;
-        }
-
-        .comparison-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            font-size: 0.875rem;
-        }
-
-        .comparison-label {
-            color: #132d48;
-        }
-
-        .comparison-value {
-            color: #132d48;
-        }
-
-        .comparison-highlight {
-            font-weight: 500;
-            color: #532a2e;
-        }
-
+    
         .savings-highlight {
             text-align: center;
-            font-size: 0.75rem;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-weight: 600;
         }
 
         .savings-standard {
-            background: #f2ece7;
-            color: #532a2e;
+            background: linear-gradient(135deg, var(--cream), #F0F4F7);
+            color: var(--primary-navy);
         }
 
         .savings-premium {
-            background: #532a2e;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
             color: white;
         }
 
         .plan-cta {
             width: 100%;
             margin-top: 1.5rem;
-            padding: 0.625rem 1rem;
-            border-radius: 9999px;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
             color: white;
-            font-weight: 500;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        @media (min-width: 640px) {
-            .plan-cta {
-                padding: 0.75rem 1.5rem;
-            }
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-standard {
-            background: #132d48;
+            background: linear-gradient(135deg, var(--primary-navy), #1E3A5F);
+            box-shadow: 0 4px 20px rgba(19, 45, 72, 0.3);
         }
 
         .cta-premium {
-            background: #532a2e;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
+            box-shadow: 0 4px 20px rgba(238, 108, 77, 0.3);
+        }
+
+        .plan-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .plan-cta:hover::before {
+            left: 100%;
         }
 
         .plan-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         .plan-includes {
@@ -949,10 +1260,10 @@
         }
 
         .includes-title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: #532a2e;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
         }
 
         .includes-list {
@@ -962,260 +1273,50 @@
             gap: 1rem;
         }
 
-        @media (min-width: 640px) {
-            .includes-list {
-                gap: 1.5rem;
-            }
-        }
-
         .includes-item {
             display: inline-flex;
             align-items: center;
-            font-size: 0.75rem;
-            padding: 0.375rem 0.75rem;
-            border-radius: 9999px;
-            background: #f2ece7;
-            color: #132d48;
+            font-size: 0.85rem;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--cream), #F0F4F7);
+            color: var(--primary-navy);
+            font-weight: 500;
+            border: 1px solid rgba(238, 108, 77, 0.2);
         }
 
         .includes-icon {
-            width: 0.875rem;
-            height: 0.875rem;
-            margin-right: 0.375rem;
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: 3rem 0;
-            background: #f2ece7;
-        }
-
-        @media (min-width: 640px) {
-            .faq {
-                padding: 5rem 0;
-            }
-        }
-
-        .faq-container {
-            max-width: 48rem;
-            margin: 0 auto;
-        }
-
-        .faq-list {
-            border-top: 1px solid #ebdfd5;
-        }
-
-        .faq-item {
-            padding: 1.25rem 0;
-            border-bottom: 1px solid #ebdfd5;
-        }
-
-        .faq-question {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #132d48;
-            margin-bottom: 0.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .faq-question {
-                font-size: 1.125rem;
-            }
-        }
-
-        .faq-answer {
-            font-size: 0.875rem;
-            color: #132d48;
-            opacity: 0.8;
-        }
-
-        .faq-cta {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .faq-button {
-            padding: 0.625rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            font-size: 0.875rem;
-            background: #532a2e;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .faq-button:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transform: translateY(-1px);
-        }
-
-        /* Waitlist Section */
-        .waitlist {
-            padding: 4rem 0;
-            background: #132d48;
-            color: #fffbef;
-        }
-
-        @media (min-width: 640px) {
-            .waitlist {
-                padding: 6rem 0;
-            }
-        }
-
-        .waitlist-container {
-            max-width: 32rem;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .waitlist h2 {
-            font-size: 1.5rem;
-            font-family: serif;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            color: #fffbef;
-        }
-
-        @media (min-width: 640px) {
-            .waitlist h2 {
-                font-size: 2.25rem;
-                margin-bottom: 1.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .waitlist h2 {
-                font-size: 3rem;
-            }
-        }
-
-        .waitlist p {
-            font-size: 0.875rem;
-            margin-bottom: 2rem;
-            color: #fffbef;
-            opacity: 0.9;
-        }
-
-        @media (min-width: 640px) {
-            .waitlist p {
-                font-size: 1rem;
-                margin-bottom: 2.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .waitlist p {
-                font-size: 1.125rem;
-            }
-        }
-
-        .waitlist-form {
-            max-width: 28rem;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        @media (min-width: 640px) {
-            .form-group {
-                flex-direction: row;
-            }
-        }
-
-        .waitlist-input {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(255, 251, 239, 0.2);
-            background: transparent;
-            color: #fffbef;
-            outline: none;
-            transition: all 0.3s ease;
-            min-width: 0;
-            margin-bottom: 0.75rem;
-        }
-
-        @media (min-width: 640px) {
-            .waitlist-input {
-                padding: 1rem 1.5rem;
-                margin-bottom: 0;
-            }
-        }
-
-        .waitlist-input::placeholder {
-            color: rgba(255, 251, 239, 0.6);
-        }
-
-        .waitlist-input:focus {
-            border-color: rgba(255, 251, 239, 0.4);
-        }
-
-        .waitlist-submit {
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            background: #532a2e;
-            color: white;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        @media (min-width: 640px) {
-            .waitlist-submit {
-                padding: 1rem 2rem;
-            }
-        }
-
-        .waitlist-submit:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .success-message {
-            margin-top: 1rem;
-            opacity: 0.9;
-            color: #beb5a6;
-            display: none;
-        }
-
-        @media (min-width: 640px) {
-            .success-message {
-                margin-top: 1.5rem;
-            }
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.5rem;
+            color: var(--primary-orange);
         }
 
         /* Footer */
         footer {
-            padding: 1.5rem 0;
+            padding: 2rem 0;
             text-align: center;
-        }
-
-        @media (min-width: 640px) {
-            footer {
-                padding: 2rem 0;
-            }
+            background: var(--cream);
         }
 
         footer p {
-            font-size: 0.75rem;
-            color: #132d48;
-            opacity: 0.7;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        @media (min-width: 640px) {
-            footer p {
-                font-size: 0.875rem;
-            }
+        /* Collection Note */
+        .collection-note {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .collection-note p {
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
         /* Utility Classes */
@@ -1244,6 +1345,25 @@
         .loading {
             opacity: 0.6;
             pointer-events: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
         }
     </style>
 </head>
@@ -1281,15 +1401,15 @@
                         <div class="watch-label">Business Dinner</div>
                     </div>
                     <div class="watch-card">
-                        <img src="./images/titan.jpg" alt="Titan Watch" />
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=300&h=300&fit=crop&crop=center" alt="Titan Watch" />
                         <div class="watch-label">Weekend Casual</div>
                     </div>
                     <div class="watch-card">
-                        <img src="./images/casio.jpg" alt="Casio Watch" />
+                        <img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=300&h=300&fit=crop&crop=center" alt="Casio Watch" />
                         <div class="watch-label">Adventure Ready</div>
                     </div>
                     <div class="watch-card">
-                        <img src="./images/armani_exchange.jpg" alt="Armani Exchange Watch" />
+                        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=300&h=300&fit=crop&crop=center" alt="Armani Exchange Watch" />
                         <div class="watch-label">Evening Events</div>
                     </div>
                 </div>
@@ -1315,7 +1435,7 @@
                     </div>
                     <div class="step-content">
                         <h3>Choose Your Membership</h3>
-                        <p>Pick your plan: 6-month (₹699/mo) or 12-month (₹649/mo) with 4× the value. Immediately gain access to our curated collection.</p>
+                        <p>Pick your plan: 6-month (₹825/mo) or 12-month (₹775/mo) with 4× the value. Immediately gain access to our curated collection.</p>
                         <div class="step-tip">
                             <p><strong>Style Insider:</strong> Our best members maintain multiple watches to match different outfits for every occasion</p>
                         </div>
@@ -1369,7 +1489,7 @@
                     <div class="step-content">
                         <h3>Refresh Your Collection</h3>
                         <p>After 3 months, exchange your watches for fresh styles. We handle the logistics - you just enjoy having a perpetually updated wrist game. Complete a 12-month plan to keep one premium watch forever.</p>
-                        <div style="margin-top: 1rem;">
+                        <div style="margin-top: 1.5rem;">
                             <button class="btn-primary" onclick="scrollToWaitlist()">Join India's Watch Innovators</button>
                         </div>
                     </div>
@@ -1399,163 +1519,142 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Pricing That Makes Sense</h2>
-                <p>Experience premium watches at a fraction of ownership costs</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <!-- Plan 1 -->
-                <div class="pricing-card">
-                    <div class="plan-header">
+<!-- Pricing Section -->
+<section class="pricing">
+    <div class="container">
+        <div class="section-title">
+            <h2>Choose Your TimeLoop Plan</h2>
+            <p>Experience premium watches at a fraction of ownership costs</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <!-- Plan 1 -->
+            <div class="pricing-card">
+                <div class="plan-header">
+                    <div class="plan-info">
                         <h3 class="plan-name">6-Month Explorer</h3>
-                        <span class="plan-badge">FLEXIBLE</span>
+                        <span class="plan-badge">Flexible</span>
                     </div>
                     <div class="price-display">
-                        <span class="price">₹699</span>
-                        <span class="price-period">/month</span>
+                        <span class="price">₹825</span>
+                        <span class="price-period">/mo</span>
                     </div>
-                    <p class="price-subtitle">₹4,194 total upfront - Try before committing longer</p>
-                    <ul class="features-list">
-                        <li class="feature-item">
-                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <div>
-                                <span class="feature-text">Access to Standard Collection</span>
-                                <p class="feature-subtitle">Timex, Fossil, Casio, Tommy Hilfiger</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <div>
-                                <span class="feature-text">2 watch swaps included</span>
-                                <p class="feature-subtitle">New watch every 3 months</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="feature-text">Cancel anytime after 6 months</span>
-                        </li>
-                    </ul>
-                    <div class="value-comparison">
-                        <div class="comparison-row">
-                            <span class="comparison-label">Traditional approach</span>
-                            <span class="comparison-value">₹16,000+ for 2 watches</span>
-                        </div>
-                        <div class="comparison-row">
-                            <span class="comparison-label">With TimeLoop</span>
-                            <span class="comparison-highlight">₹4,194 for 2 watches</span>
-                        </div>
-                        <div class="savings-highlight savings-standard">
-                            <span><strong>Save over ₹11,800 in 6 months</strong></span>
-                        </div>
-                    </div>
-                    <button class="plan-cta cta-standard" onclick="scrollToWaitlist()">Reserve Your Spot</button>
                 </div>
                 
-                <!-- Plan 2 -->
-                <div class="pricing-card featured">
-                    <div class="best-value-badge">BEST VALUE</div>
-                    <div class="plan-header">
-                        <h3 class="plan-name">12-Month Connoisseur</h3>
-                        <span class="plan-badge">MOST POPULAR</span>
+                <p class="price-subtitle">₹4950 total upfront</p>
+                
+                <div class="features-compact">
+                    <div class="feature-row">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Standard Collection Access</span>
                     </div>
-                    <div class="price-display">
-                        <span class="price">₹649</span>
-                        <span class="price-period">/month</span>
+                    <div class="feature-row">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>2 watch swaps included</span>
                     </div>
-                    <p class="price-subtitle">₹7,788 total upfront - Our smart members' choice</p>
-                    <ul class="features-list">
-                        <li class="feature-item">
-                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <div>
-                                <span class="feature-text">Full Tier Access</span>
-                                <p class="feature-subtitle">Upgrade to Premium after 2 swaps</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <div>
-                                <span class="feature-text">4 watch swaps included</span>
-                                <p class="feature-subtitle">New styles every quarter</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <div>
-                                <span class="feature-text feature-highlight">Keep one premium watch forever</span>
-                                <p class="feature-subtitle">Yours to own after 12 months</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="feature-text">Priority access to new styles</span>
-                        </li>
-                    </ul>
-                    <div class="value-comparison">
-                        <div class="comparison-row">
-                            <span class="comparison-label">Traditional approach</span>
-                            <span class="comparison-value">₹45,000+ for 4 watches</span>
-                        </div>
-                        <div class="comparison-row">
-                            <span class="comparison-label">With TimeLoop</span>
-                            <span class="comparison-highlight">₹7,788 + keep one watch</span>
-                        </div>
-                        <div class="savings-highlight savings-premium">
-                            <span><strong>Save over ₹35,000 in 12 months</strong></span>
-                        </div>
+                    <div class="feature-row">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Cancel after 6 months</span>
                     </div>
-                    <button class="plan-cta cta-premium" onclick="scrollToWaitlist()">Secure Your Membership</button>
                 </div>
+                
+                <div class="savings-highlight savings-standard">
+                    <span>Save ₹11,800+ vs buying</span>
+                </div>
+                
+                <button class="plan-cta cta-standard" onclick="scrollToWaitlist()">Reserve Your Spot</button>
             </div>
             
-            <div class="plan-includes">
-                <p class="includes-title">All plans include:</p>
-                <div class="includes-list">
-                    <span class="includes-item">
-                        <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        Free Shipping
-                    </span>
-                    <span class="includes-item">
-                        <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        Warranty Coverage
-                    </span>
-                    <span class="includes-item">
-                        <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        Dedicated Style Advisor
-                    </span>
-                    <span class="includes-item">
-                        <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        Membership Perks
-                    </span>
+            <!-- Plan 2 - Featured -->
+            <div class="pricing-card featured">
+                <div class="best-value-badge">Best Value</div>
+                
+                <div class="plan-header">
+                    <div class="plan-info">
+                        <h3 class="plan-name">12-Month Connoisseur</h3>
+                        <span class="plan-badge popular">Most Popular</span>
+                    </div>
+                    <div class="price-display">
+                        <span class="price">₹775</span>
+                        <span class="price-period">/mo</span>
+                    </div>
                 </div>
+                
+                <p class="price-subtitle">₹9,300 total upfront</p>
+                
+                <div class="features-compact">
+                    <div class="feature-row">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Full Premium Collection Access</span>
+                    </div>
+                    <div class="feature-row">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>4 watch swaps included</span>
+                    </div>
+                    <div class="feature-row highlight">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span><strong>Keep one watch forever</strong></span>
+                    </div>
+                    <div class="feature-row">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Priority access to new styles</span>
+                    </div>
+                </div>
+                
+                <div class="savings-highlight savings-premium">
+                    <span>Save ₹35,000+ vs buying</span>
+                </div>
+                
+                <button class="plan-cta cta-premium" onclick="scrollToWaitlist()">Secure Your Membership</button>
             </div>
         </div>
-    </section>
+        
+
+        <div class="plan-includes">
+            <p class="includes-title">All plans include:</p>
+            <div class="includes-list">
+                <span class="includes-item">
+                    <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Free Shipping
+                </span>
+                <span class="includes-item">
+                    <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Warranty Coverage
+                </span>
+                <span class="includes-item">
+                    <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Dedicated Style Advisor
+                </span>
+                <span class="includes-item">
+                    <svg class="includes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Membership Perks
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- FAQ Section -->
     <section class="faq">
@@ -1569,32 +1668,28 @@
                 <div class="faq-list">
                     <div class="faq-item">
                         <h3 class="faq-question">What happens if I damage a watch?</h3>
-                        <p class="faq-answer">All watches come with insurance coverage for normal wear and tear. For accidental damage, there's a small deductible based on the watch's value. We're reasonable and understand accidents happen.</p>
+                        <div class="faq-answer">All watches come with insurance coverage for normal wear and tear. For accidental damage, there's a small deductible based on the watch's value. We're reasonable and understand accidents happen.</div>
                     </div>
                     
                     <div class="faq-item">
                         <h3 class="faq-question">Can I select specific watches or is it random?</h3>
-                        <p class="faq-answer">You have complete control over which watches you select. Browse our full collection and pick exactly what matches your style. Our style advisors can also recommend watches that complement your wardrobe based on your preferences.</p>
+                        <div class="faq-answer">You have complete control over which watches you select. Browse our full collection and pick exactly what matches your style. Our style advisors can also recommend watches that complement your wardrobe based on your preferences.</div>
                     </div>
                     
                     <div class="faq-item">
                         <h3 class="faq-question">Are these brand new watches?</h3>
-                        <p class="faq-answer">All watches arrive in like-new condition. We professionally service, polish, and sterilize each timepiece between users. Most cannot tell the difference from brand new, and all mechanical components are certified to function perfectly.</p>
+                        <div class="faq-answer">All watches arrive in like-new condition. We professionally service, polish, and sterilize each timepiece between users. Most cannot tell the difference from brand new, and all mechanical components are certified to function perfectly.</div>
                     </div>
                     
                     <div class="faq-item">
                         <h3 class="faq-question">How does the watch ownership work for 12-month plans?</h3>
-                        <p class="faq-answer">After completing a full 12-month membership, you can select one of the watches you've experienced to keep permanently. This timepiece becomes yours to own forever—a premium watch that would normally cost ₹10,000-15,000 at retail.</p>
+                        <div class="faq-answer">After completing a full 12-month membership, you can select one of the watches you've experienced to keep permanently. This timepiece becomes yours to own forever—a premium watch that would normally cost ₹10,000-15,000 at retail.</div>
                     </div>
                     
                     <div class="faq-item">
                         <h3 class="faq-question">What happens if I want to cancel?</h3>
-                        <p class="faq-answer">After your initial commitment period (6 or 12 months), you can cancel anytime with 30 days' notice. Simply return your current watches and your membership will be closed with no further charges.</p>
+                        <div class="faq-answer">After your initial commitment period (6 or 12 months), you can cancel anytime with 30 days' notice. Simply return your current watches and your membership will be closed with no further charges.</div>
                     </div>
-                </div>
-                
-                <div class="faq-cta">
-                    <button class="faq-button" onclick="scrollToWaitlist()">More Questions? Contact Us</button>
                 </div>
             </div>
         </div>
@@ -1639,54 +1734,54 @@
     </footer>
 
     <script>
-        // Watch data - Replace with your actual image paths
+        // Watch data with placeholder images
         const watches = [
             {
                 id: 1,
                 name: "Seiko Sport Chronograph",
-                image: "./images/seiko.png", // Replace with your actual image path
+                image: "./images/seiko.png",
                 model: "SSB429P1",
                 tier: "Premium"
             },
             {
                 id: 2,
                 name: "Timex Expedition",
-                image: "./images/timex.jpg", // Replace with your actual image path
+                image: "./images/timex.jpg",
                 model: "Tw2V00600X6",
                 tier: "Standard"
             },
             {
                 id: 3,
                 name: "Invicta Pro Diver",
-                image: "./images/invicta.jpg", // Replace with your actual image path
+                image: "./images/invicta.jpg",
                 model: "8926OB",
                 tier: "Standard"
             },
             {
                 id: 4,
                 name: "Casio G-Shock",
-                image: "./images/casio.jpg", // Replace with your actual image path
+                image: "./images/casio.jpg",
                 model: "GBM-2100-1A",
                 tier: "Standard"
             },
             {
                 id: 5,
                 name: "Armani Exchange Hampton",
-                image: "./images/armani_exchange.jpg", // Replace with your actual image path
+                image: "./images/armani_exchange.jpg",
                 model: "AX2440",
                 tier: "Premium"
             },
             {
                 id: 6,
                 name: "Titan Maritime",
-                image: "./images/titan.jpg", // Replace with your actual image path
+                image: "./images/titan.jpg",
                 model: "NM1830KL02",
                 tier: "Premium"
             },
             {
                 id: 7,
                 name: "Timex Marlin",
-                image: "./images/timex-black.jpg", // Replace with your actual image path
+                image: "./images/timex-black.jpg",
                 model: "TW2V44600U9",
                 tier: "Premium"
             }
@@ -1719,6 +1814,29 @@
             });
         }
 
+        // FAQ Interactive Dropdowns
+        function initializeFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                    
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
         // Smooth scrolling function
         function scrollToWaitlist() {
             document.getElementById('waitlist-section').scrollIntoView({
@@ -1729,7 +1847,7 @@
 
         // Enhanced form handling for Google Apps Script
         document.getElementById('waitlistForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
             const submitText = document.getElementById('submitText');
@@ -1763,17 +1881,17 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                mode: 'no-cors' // Required for Google Apps Script
+                mode: 'no-cors'
             })
             .then(() => {
-                // Show success message (no-cors mode always resolves)
+                // Show success message
                 successMessage.innerHTML = '🎉 Welcome to the TimeLoop waitlist!<br>We\'ll notify you when we launch.';
                 successMessage.style.display = 'block';
                 
                 // Reset form
                 form.reset();
                 
-                // Track successful signup (if you have analytics)
+                // Track successful signup (if analytics available)
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'signup', {
                         'method': 'waitlist',
@@ -1786,8 +1904,6 @@
             })
             .catch((error) => {
                 console.error('Error:', error);
-                
-                // Show error message
                 alert('Oops! Something went wrong. Please try again or contact us directly.');
             })
             .finally(() => {
@@ -1798,7 +1914,7 @@
             });
         });
         
-        // Client-side email validation function
+        // Email validation function
         function isValidEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email) && email.length <= 254;
@@ -1817,9 +1933,37 @@
             });
         });
 
-        // Initialize page
+        // Initialize everything when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             generateWatchCards();
+            initializeFAQ();
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation observer to elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.step-content, .watch-showcase-card, .pricing-card');
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
         });
     </script>
 </body>
