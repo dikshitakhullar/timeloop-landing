@@ -151,17 +151,6 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23EE6C4D" fill-opacity="0.03"><circle cx="30" cy="30" r="1"/></g></svg>');
-            pointer-events: none;
-        }
-
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -183,58 +172,67 @@
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-family: 'Palantino', serif;
             font-weight: 400;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             color: var(--primary-navy);
         }
 
-        .hero h1 .bold {
+        .hero h1.main-headline {
+            margin-bottom: 0.3rem;
+        }
+
+        .hero h2 {
+            font-size: 1.4rem;
+            font-family: 'Palantino', serif;
             font-weight: 400;
-            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-orange);
         }
 
         @media (min-width: 640px) {
             .hero h1 {
-                font-size: 3rem;
-                margin-bottom: 2rem;
+                font-size: 2.8rem;
+            }
+            .hero h2 {
+                font-size: 1.6rem;
             }
         }
 
         @media (min-width: 768px) {
             .hero h1 {
-                font-size: 3.5rem;
+                font-size: 3.2rem;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
             }
         }
 
-        @media (min-width: 1024px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-        }
-
-        .hero p {
+        .hero-subtitle {
             font-size: 1.1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             color: var(--text-muted);
             font-weight: 400;
-            line-height: 1.7;
+            line-height: 1.5;
+        }
+
+        .hero-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            line-height: 1.4;
         }
 
         @media (min-width: 640px) {
-            .hero p {
+            .hero-subtitle {
                 font-size: 1.2rem;
             }
-        }
-
-        @media (min-width: 768px) {
-            .hero p {
-                font-size: 1.3rem;
+            .hero-price {
+                font-size: 1.4rem;
             }
         }
 
@@ -408,10 +406,10 @@
             color: var(--primary-orange);
         }
 
-        /* Section Styles */
+        /* HOW IT WORKS - UPDATED */
         .how-it-works {
             padding: 5rem 0;
-            background: white;
+            background: linear-gradient(135deg, var(--cream) 0%, #F8F9FA 100%);
             position: relative;
         }
 
@@ -460,164 +458,269 @@
             font-weight: 400;
         }
 
-        /* Steps */
-        .steps-container {
-            max-width: 64rem;
+        .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 700px;
             margin: 0 auto;
             position: relative;
         }
 
-        .timeline {
-            display: none;
+        /* Add a vertical line for alignment */
+        .steps-grid::before {
+            content: '';
             position: absolute;
-            left: 21px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--primary-orange), var(--primary-navy));
-            border-radius: 2px;
+            left: 95px;
+            top: 25px;
+            bottom: 25px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-orange), var(--secondary-brown));
+            opacity: 0.3;
+            z-index: 1;
         }
 
-        @media (min-width: 768px) {
-            .timeline {
-                display: block;
-            }
-        }
-
-        .step {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        @media (min-width: 768px) {
-            .step {
-                flex-direction: row;
-                margin-bottom: 4rem;
-            }
-        }
-
-        .step-indicator {
-            display: none;
-            margin-right: 2rem;
-            position: relative;
-        }
-
-        @media (min-width: 768px) {
-            .step-indicator {
-                display: block;
-            }
-        }
-
-        .step-dot {
-            width: 16px;
-            height: 16px;
-            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
-            border-radius: 50%;
-            position: absolute;
-            left: -2px;
-            top: 2rem;
-            box-shadow: 0 0 0 4px white, 0 0 0 8px var(--primary-orange);
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% {
-                box-shadow: 0 0 0 4px white, 0 0 0 8px rgba(238, 108, 77, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 0 4px white, 0 0 0 12px rgba(238, 108, 77, 0.1);
-            }
-        }
-
-        .step-content {
+        .step-card {
             background: white;
-            padding: 2rem;
             border-radius: 20px;
+            padding: 2rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            flex: 1;
-            border-top: 4px solid var(--primary-orange);
+            border: 2px solid var(--cream);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            z-index: 2;
+            min-height: 120px;
         }
 
-        .step h3 {
-            font-size: 1.4rem;
-            font-family: 'Palantino', serif;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: var(--primary-navy);
-        }
-
-        @media (min-width: 640px) {
-            .step h3 {
-                font-size: 1.6rem;
-                margin-bottom: 1.2rem;
+        @media (max-width: 767px) {
+            .step-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+                align-items: center;
+                min-height: auto;
+            }
+            
+            .steps-grid::before {
+                display: none;
             }
         }
 
-        .step p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-muted);
-            line-height: 1.7;
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--secondary-brown));
         }
 
-        @media (min-width: 640px) {
-            .step p {
-                font-size: 1.1rem;
-            }
-        }
-
-        .step-tip {
-            padding: 1.2rem;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--cream), #F0F4F7);
-            border-left: 4px solid var(--primary-orange);
-        }
-
-        .step-tip p {
-            font-size: 0.9rem;
-            color: var(--primary-navy);
-            margin: 0;
-            font-weight: 500;
-        }
-
-        @media (min-width: 640px) {
-            .step-tip p {
-                font-size: 1rem;
-            }
-        }
-
-        /* Brand Grid */
-        .brand-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .brand-card {
-            background: white;
-            border-radius: 12px;
-            padding: 0.8rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid var(--cream);
-        }
-
-        .brand-card:hover {
+        .step-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(238, 108, 77, 0.15);
+            box-shadow: 0 20px 40px rgba(238, 108, 77, 0.15);
             border-color: var(--primary-orange);
         }
 
-        .brand-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
+        .step-left {
+            width: 170px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        @media (max-width: 767px) {
+            .step-left {
+                width: auto;
+                flex-shrink: 1;
+            }
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 3;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            margin: 0;
+            color: var(--primary-navy);
+            text-align: center;
+        }
+
+        .step-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        @media (max-width: 767px) {
+            .step-content {
+                text-align: center;
+            }
+        }
+
+        .step-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .step-pricing {
+            background: linear-gradient(135deg, var(--cream), #F0F4F7);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0 0 0;
+            font-size: 0.9rem;
+            color: var(--primary-navy);
+        }
+
+        .step-pricing strong {
+            color: var(--primary-orange);
+        }
+
+        /* WHY TIMELOOP SECTION */
+        .why-timeloop {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--primary-orange);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(238, 108, 77, 0.15);
+        }
+
+        .benefit-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary-navy);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .benefit-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* COMPACT TIERS */
+        .tiers-compact {
+            background: rgba(238, 108, 77, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem auto;
+            max-width: 900px;
+            text-align: center;
+            border: 1px solid rgba(238, 108, 77, 0.2);
+        }
+
+        .tiers-compact h4 {
+            font-size: 1.1rem;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .tier-progression {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tier-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            min-width: 200px;
+        }
+
+        .tier-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .tier-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .tier-name {
+            font-weight: 600;
+            color: var(--primary-navy);
+            font-size: 0.9rem;
+        }
+
+        .tier-brands {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .tier-arrow {
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 767px) {
+            .tier-progression {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .tier-arrow {
+                transform: rotate(90deg);
+            }
         }
 
         /* Product Showcase */
@@ -652,85 +755,73 @@
             }
         }
 
-       .watches-grid {
-            display: flex;
-            gap: 1.5rem;
-            scroll-snap-type: x mandatory;
+        .watch-showcase-card {
+            min-width: 260px;
+            scroll-snap-align: center;
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
         }
 
-      @media (min-width: 640px) {
-          .watches-grid {
-              gap: 2rem;
-          }
-      }
+        @media (min-width: 640px) {
+            .watch-showcase-card {
+                min-width: 280px;
+            }
+        }
 
-      .watch-showcase-card {
-          min-width: 260px;
-          scroll-snap-align: center;
-          position: relative;
-          background: white;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-          transition: all 0.4s ease;
-          border: 2px solid transparent;
-      }
+        @media (min-width: 768px) {
+            .watch-showcase-card {
+                min-width: 300px;
+            }
+        }
 
-      @media (min-width: 640px) {
-          .watch-showcase-card {
-              min-width: 280px;
-          }
-      }
+        .watch-showcase-card:hover {
+            box-shadow: 0 20px 50px rgba(238, 108, 77, 0.2);
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+        }
 
-      @media (min-width: 768px) {
-          .watch-showcase-card {
-              min-width: 300px;
-          }
-      }
+        .watch-image-container {
+            position: relative;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        }
 
-      .watch-showcase-card:hover {
-          box-shadow: 0 20px 50px rgba(238, 108, 77, 0.2);
-          transform: translateY(-10px);
-          border-color: var(--primary-orange);
-      }
+        .watch-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            padding: 1.5rem;
+        }
 
-      .watch-image-container {
-          position: relative;
-          background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-      }
+        @media (min-width: 640px) {
+            .watch-image {
+                height: 220px;
+                padding: 1.5rem;
+            }
+        }
 
-      .watch-image {
-          width: 100%;
-          height: 200px;
-          object-fit: contain;
-          padding: 1.5rem;
-      }
+        @media (min-width: 768px) {
+            .watch-image {
+                height: 240px;
+            }
+        }
 
-      @media (min-width: 640px) {
-          .watch-image {
-              height: 220px;
-              padding: 1.5rem;
-          }
-      }
-
-      @media (min-width: 768px) {
-          .watch-image {
-              height: 240px;
-          }
-      }
-
-      .tier-badge {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          padding: 0.4rem 0.8rem;
-          border-radius: 20px;
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: white;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-      }
+        .tier-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
         .tier-premium {
             background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
@@ -1059,7 +1150,6 @@
             position: relative;
             height: fit-content;
         }
-    
 
         .pricing-card:hover {
             transform: translateY(-5px);
@@ -1068,32 +1158,28 @@
         }
 
         .pricing-card.featured {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Back to original shadow */
-            border: 2px solid var(--primary-orange); /* Using orange instead of the old color */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary-orange);
             position: relative;
-            /* Remove the transform: scale() to match original */
         }
-
 
         .pricing-card.featured:hover {
             transform: translateY(-5px);
-            z-index: 1
+            z-index: 1;
         }
 
-
         .best-value-badge {
-    position: absolute;
-    top: -1rem;
-    right: 1rem;
-    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
-    color: white;
-    padding: 0.25rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
+            position: absolute;
+            top: -1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
         .plan-header {
             display: flex;
@@ -1131,8 +1217,7 @@
         .plan-badge.popular {
             background: linear-gradient(135deg, var(--primary-orange), var(--secondary-brown));
             color: white;
-          }
-
+        }
 
         .price-display {
             text-align: right;
@@ -1161,34 +1246,30 @@
             font-weight: 400;
         }
 
-  .features-compact {
-      margin-bottom: 1.2rem;
-  }
+        .features-compact {
+            margin-bottom: 1.2rem;
+        }
 
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
 
-.feature-row {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.6rem;
-    font-size: 0.9rem;
-    color: var(--text-dark);
-}
+        .feature-row.highlight {
+            color: var(--primary-orange);
+        }
 
-.feature-row.highlight {
-    color: var(--primary-orange);
-}
+        .check-icon {
+            width: 1rem;
+            height: 1rem;
+            flex-shrink: 0;
+            color: var(--primary-orange);
+        }
 
-.check-icon {
-    width: 1rem;
-    height: 1rem;
-    flex-shrink: 0;
-    color: var(--primary-orange);
-}
-
-
-
-    
         .savings-highlight {
             text-align: center;
             font-size: 0.85rem;
@@ -1365,6 +1446,116 @@
                 transform: translateY(-8px);
             }
         }
+
+                .brands-section {
+            padding: 3rem 0;
+            background: white;
+            border-top: 1px solid rgba(238, 108, 77, 0.1);
+            border-bottom: 1px solid rgba(238, 108, 77, 0.1);
+            overflow: hidden;
+        }
+
+        .brands-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .brands-title h3 {
+            font-size: 1.8rem;
+            font-family: 'Palantino', serif;
+            font-weight: 400;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .brands-title h3 {
+                font-size: 2.2rem;
+            }
+        }
+
+        .brands-title p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .brands-slider {
+            overflow: hidden;
+            position: relative;
+            white-space: nowrap;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 0) 10%, 
+                rgba(255, 255, 255, 0) 90%, 
+                rgba(255, 255, 255, 1) 100%);
+        }
+
+        .brands-track {
+            display: inline-flex;
+            animation: slide 40s linear infinite;
+            gap: 4rem;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .brand-logo {
+            flex-shrink: 0;
+            width: 140px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+            padding: 0.8rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(238, 108, 77, 0.1);
+        }
+
+        .brand-logo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(238, 108, 77, 0.15);
+            border-color: var(--primary-orange);
+        }
+
+        .brand-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: filter 0.3s ease;
+        }
+
+        /* Pause animation on hover */
+        .brands-slider:hover .brands-track {
+            animation-play-state: paused;
+        }
+
+        @media (min-width: 640px) {
+            .brand-logo {
+                width: 160px;
+                height: 70px;
+            }
+            
+            .brands-track {
+                gap: 5rem;
+            }
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -1381,13 +1572,10 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <h1>
-                        A Different Watch<br/>
-                        <span class="bold">For Every Occasion</span>
-                    </h1>
-                    <p>
-                        Why own one watch when you can <strong>showcase a collection</strong>? Swap premium timepieces every 3 months. Starting at just ₹775/month.
-                    </p>
+                    <h1> Own Time, Not Just a Watch.</h1>
+                    <h2>India's First Watch Subscription That Evolves With Your Style.</h2>
+                    <p class="hero-subtitle">For less than the price of a coffee a month, wear, rotate, and eventually own premium watches.</p>
+                    <p class="hero-price">₹775/month. New watch every 3 months. One to keep forever.</p>
                     <div class="hero-buttons">
                         <button class="btn-primary" onclick="scrollToWaitlist()">Join the Waitlist</button>
                         <a href="#how-it-works" class="btn-secondary">How It Works</a>
@@ -1417,80 +1605,184 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
+    <!-- Brands Slider Section -->
+    <section class="brands-section">
+        <div class="container">
+            <div class="brands-title">
+                <h3>Featuring Watches From Brands You Love</h3>
+            </div>
+        </div>
+        
+        <div class="brands-slider">
+            <div class="brands-track">
+                <!-- First set of logos -->
+                <div class="brand-logo">
+                    <img src="./images/seiko_logo.png" alt="Seiko" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/timex_logo.png" alt="Timex" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/casio_logo.png" alt="Casio" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/fossil_logo.png" alt="Fossil" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/titan_logo.png" alt="Titan" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/tissot_logo.png" alt="Tissot" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/ax_logo.png" alt="Armani Exchange" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/gshock_logo.png" alt="G-Shock" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/alba_logo.png" alt="Alba" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/ea_logo.png" alt="Emporio Armani" />
+                </div>
+                
+                <!-- Duplicate set for seamless loop -->
+                <div class="brand-logo">
+                    <img src="./images/seiko_logo.png" alt="Seiko" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/timex_logo.png" alt="Timex" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/casio_logo.png" alt="Casio" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/fossil_logo.png" alt="Fossil" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/titan_logo.png" alt="Titan" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/tissot_logo.png" alt="Tissot" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/ax_logo.png" alt="Armani Exchange" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/gshock_logo.png" alt="G-Shock" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/alba_logo.png" alt="Alba" />
+                </div>
+                <div class="brand-logo">
+                    <img src="/images/ea_logo.png" alt="Emporio Armani" />
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+ <section class="how-it-works">
         <div class="container">
             <div class="section-title">
                 <h2>How TimeLoop Works</h2>
-                <p>Four simple steps to elevate your style game without the traditional investment</p>
+                <p>Three simple steps to transform your style without breaking the bank</p>
             </div>
             
-            <div class="steps-container">
-                <div class="timeline"></div>
-                
-                <!-- Step 1 -->
-                <div class="step">
-                    <div class="step-indicator">
-                        <div class="step-dot"></div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-left">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Subscribe</h3>
                     </div>
                     <div class="step-content">
-                        <h3>Choose Your Membership</h3>
-                        <p>Pick your plan: 6-month (₹825/mo) or 12-month (₹775/mo) with 4× the value. Immediately gain access to our curated collection.</p>
-                        <div class="step-tip">
-                            <p><strong>Style Insider:</strong> Our best members maintain multiple watches to match different outfits for every occasion</p>
+                        <p class="step-description">Choose your plan and get access to our curated collection of premium timepieces.</p>
+                        <div class="step-pricing">
+                            <strong>12 months:</strong> ₹775/month (₹9,300 upfront)<br>
+                            <strong>6 months:</strong> ₹825/month (₹4,950 upfront)
                         </div>
                     </div>
                 </div>
                 
-                <!-- Step 2 -->
-                <div class="step">
-                    <div class="step-indicator">
-                        <div class="step-dot"></div>
+                <div class="step-card">
+                    <div class="step-left">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Swap Every 3 Months</h3>
                     </div>
                     <div class="step-content">
-                        <h3>Select Your First Watches</h3>
-                        <p>Browse our collection of premium timepieces from top brands. We'll deliver them to your doorstep in pristine condition within 2-3 business days.</p>
-                        <div class="brand-grid">
-                            <div class="brand-card">
-                                <img src="./images/seiko_logo.png" alt="Seiko" />
-                            </div>
-                            <div class="brand-card">
-                                <img src="./images/timex_logo.png" alt="Timex" />
-                            </div>
-                            <div class="brand-card">
-                                <img src="./images/casio_logo.png" alt="Casio" />
-                            </div>
-                            <div class="brand-card">
-                                <img src="./images/fossil_logo.png" alt="Fossil" />
-                            </div>
-                        </div>
+                        <p class="step-description">We deliver your selected watch to your doorstep. After 90 days, swap it for a new one. Always fresh, always in style.</p>
                     </div>
                 </div>
                 
-                <!-- Step 3 -->
-                <div class="step">
-                    <div class="step-indicator">
-                        <div class="step-dot"></div>
+                <div class="step-card">
+                    <div class="step-left">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Own It Forever</h3>
                     </div>
                     <div class="step-content">
-                        <h3>Showcase Your Style</h3>
-                        <p>Wear your premium watches for a full 3 months. Build your reputation as a watch connoisseur while earning tier upgrades through good membership history.</p>
-                        <div class="step-tip">
-                            <p><strong>Style Tip:</strong> Members who take watch selfies and tag <strong>#TimeLoopStyle</strong> get early access to new collections</p>
-                        </div>
+                        <p class="step-description">Stay subscribed for 18 months and you get to keep a premium watch forever. No catches. No extra cost.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY TIMELOOP SECTION -->
+    <section class="why-timeloop">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why TimeLoop</h2>
+                <p>The smart way to experience premium watches without the commitment</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4>Style On Rotation</h4>
+                    <p>Swap watches every 90 days to match your mood, your outfit, your season.</p>
+                </div>
                 
-                <!-- Step 4 -->
-                <div class="step">
-                    <div class="step-indicator">
-                        <div class="step-dot"></div>
+                <div class="benefit-item">
+                    <h4>No Commitment Pressure</h4>
+                    <p>Don't spend ₹20,000+ on a single watch. Try many. Own one eventually.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Brands You Trust</h4>
+                    <p>Seiko, Timex, Titan, Fossil, Casio, and more premium brands in our collection.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Earn Your Way Up</h4>
+                    <p>Your subscription unlocks access to more exclusive watches over time.</p>
+                </div>
+            </div>
+
+            <!-- COMPACT TIERS -->
+            <div class="tiers-compact">
+                <h4>🏆 Unlock Premium Collections Over Time</h4>
+                <div class="tier-progression">
+                    <div class="tier-item">
+                        <span class="tier-icon">🥈</span>
+                        <div class="tier-info">
+                            <div class="tier-name">Silver (Day 1)</div>
+                            <div class="tier-brands">Timex, Fossil, Titan, Casio Edifice</div>
+                        </div>
                     </div>
-                    <div class="step-content">
-                        <h3>Refresh Your Collection</h3>
-                        <p>After 3 months, exchange your watches for fresh styles. We handle the logistics - you just enjoy having a perpetually updated wrist game. Complete a 12-month plan to keep one premium watch forever.</p>
-                        <div style="margin-top: 1.5rem;">
-                            <button class="btn-primary" onclick="scrollToWaitlist()">Join India's Watch Innovators</button>
+                    <span class="tier-arrow">→</span>
+                    <div class="tier-item">
+                        <span class="tier-icon">🥇</span>
+                        <div class="tier-info">
+                            <div class="tier-name">Gold (6 Months)</div>
+                            <div class="tier-brands">G-Shock, Tissot, Seiko, Citizen, Armani</div>
+                        </div>
+                    </div>
+                    <span class="tier-arrow">→</span>
+                    <div class="tier-item">
+                        <span class="tier-icon">💎</span>
+                        <div class="tier-info">
+                            <div class="tier-name">Diamond (18 Months)</div>
+                            <div class="tier-brands">Swiss Tissot, Longines, Movado</div>
                         </div>
                     </div>
                 </div>
@@ -1541,8 +1833,6 @@
                     </div>
                 </div>
                 
-                <p class="price-subtitle">₹4950 total upfront</p>
-                
                 <div class="features-compact">
                     <div class="feature-row">
                         <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1585,8 +1875,6 @@
                         <span class="price-period">/mo</span>
                     </div>
                 </div>
-                
-                <p class="price-subtitle">₹9,300 total upfront</p>
                 
                 <div class="features-compact">
                     <div class="feature-row">
